@@ -1,0 +1,187 @@
+function AutoFillTechnisionForm(e) {
+  //inlist the varibels from the googlw sheet
+  // first part
+  var date = e.values[1];
+  var technsionName = e.values[2];
+  // netz 1-5
+  var netz1 = e.values[3];
+  var netz1Data = e.values[4];
+  var netz2 = e.values[5];
+  var netz2Data = e.values[6];
+  var netz3 = e.values[7];
+  var netz3Data = e.values[8];
+  var netz4 = e.values[9];
+  var netz4Data = e.values[10];
+  var netz5 = e.values[11];
+  var netz5Data = e.values[12];
+  // netz 6-10
+  var netz6 = e.values[30];
+  var netz6Data = e.values[31];
+  var netz7 = e.values[32];
+  var netz7Data = e.values[33];
+  var netz8 = e.values[34];
+  var netz8Data = e.values[35];
+  var netz9 = e.values[36];
+  var netz9Data = e.values[37];
+  var netz10 = e.values[38];
+  var netz10Data = e.values[39];
+
+  // ista
+  var ista1 = e.values[13];
+  var ista1Data = e.values[14];
+  var ista2 = e.values[15];
+  var ista2Data = e.values[16];
+  var ista3 = e.values[17];
+  var ista3Data = e.values[18];
+
+  // statin netz
+  var netzStation1 = e.values[46];
+  var netzStation1Remarks = e.values[47];
+  var netzStation2 = e.values[48];
+  var netzStation2Remarks = e.values[49];
+  var netzStation3 = e.values[50];
+  var netzStation3Remarks = e.values[51];
+  
+  // MR netz
+  var netzAntena1 = e.values[40];
+  var netzAntena1Remarks = e.values[41];
+  var netzAntena2 = e.values[42];
+  var netzAntena2Remarks = e.values[43];
+  var netzAntena3 = e.values[44];
+  var netzAntena3Remarks = e.values[45];
+
+  // station ista 
+  var istaStation1 = e.values[58];
+  var istaStation1Remarks = e.values[59];
+  var istaStation2 = e.values[60];
+  var istaStation2Remarks = e.values[61];
+  var istaStation3 = e.values[62];
+  var istaStation3Remarks = e.values[62];
+
+  // mr ista
+  var istaAntena1 = e.values[52];
+  var istaAntena1Remarks = e.values[53];
+  var istaAntena2 = e.values[54];
+  var istaAntena2Remarks = e.values[55];
+  var istaAntena3 = e.values[56];
+  var istaAntena3Remarks = e.values[57];
+
+  // remarks
+  var netzParachute = e.values[19];
+  var istaParachute = e.values[20];
+  var netzbatteries = e.values[21];
+  var istabatteries = e.values[22];
+  var missings = e.values[23];
+  var wentToYavne = e.values[24];
+  var nextShift = e.values[25];
+  var remarksCustomer = e.values[26];
+  var podRemark = e.values[27];
+  var generalRemarks = e.values[28];
+  // mail
+  var mailAddress = e.values[29];
+
+
+  // get the template of the technision form by its id
+  var templateFile = DriveApp.getFileById("1xONOwa6aq-zj_QH3dheH1bA6LrsCLSx9_y18uI1i2P8");
+
+  // get the folder to save the filled form into
+  var responseFolder = DriveApp.getFolderById("1t-j-5Y7gmGRWHAAVzg3yWaiul_He-yBX");
+
+  // make a copy of the template
+  var templateCopy = templateFile.makeCopy("doch Techni " + date, responseFolder);
+
+  // open the copy as doc
+  var doc = DocumentApp.openById(templateCopy.getId());
+
+  // reach into the body of the doc
+  var body = doc.getBody();
+
+  // change the relevant parts int the form by replacing the text
+  body.replaceText("{{LeadTechnician}}", technsionName);
+  body.replaceText("{{Date}}", date);
+
+  body.replaceText("{{Netz1}}", netz1);
+  body.replaceText("{{Netz1Remarks}}", netz1Data);
+  body.replaceText("{{Netz2}}", netz2);
+  body.replaceText("{{Netz2Remarks}}", netz2Data);
+  body.replaceText("{{Netz3}}", netz3);
+  body.replaceText("{{Netz3Remarks}}", netz3Data);
+  body.replaceText("{{Netz4}}", netz4);
+  body.replaceText("{{Netz4Remarks}}", netz4Data);
+  body.replaceText("{{Netz5}}", netz5);
+  body.replaceText("{{Netz5Remarks}}", netz5Data);
+
+  body.replaceText("{{Netz6}}", netz6);
+  body.replaceText("{{Netz6Remarks}}", netz6Data);
+  body.replaceText("{{Netz7}}", netz7);
+  body.replaceText("{{Netz7Remarks}}", netz7Data);
+  body.replaceText("{{Netz8}}", netz8);
+  body.replaceText("{{Netz8Remarks}}", netz8Data);
+  body.replaceText("{{Netz9}}", netz9);
+  body.replaceText("{{Netz9Remarks}}", netz9Data);
+  body.replaceText("{{Netz10}}", netz10);
+  body.replaceText("{{Netz10Remarks}}", netz10Data);
+
+  body.replaceText("{{ista1}}", ista1);
+  body.replaceText("{{ista1Remarks}}", ista1Data);
+  body.replaceText("{{ista2}}", ista2);
+  body.replaceText("{{ista2Remarks}}", ista2Data);
+  body.replaceText("{{ista3}}", ista3);
+  body.replaceText("{{ista3Remarks}}", ista3Data);
+
+  // netz station
+  body.replaceText("{{controlNetz1}}", netzStation1);
+  body.replaceText("{{controlNetz1Remarks}}", netzStation1Remarks);
+  body.replaceText("{{controlNetz2}}", netzStation2);
+  body.replaceText("{{controlNetz2Remarks}}", netzStation2Remarks);
+  body.replaceText("{{controlNetz3}}", netzStation3);
+  body.replaceText("{{controlNetz3Remarks}}", netzStation3Remarks);
+
+  // netz antena
+  body.replaceText("{{stationNetz1}}",netzAntena1);
+  body.replaceText("{{stationNetz1Remarks}}",netzAntena1Remarks);
+  body.replaceText("{{stationNetz2}}",netzAntena2);
+  body.replaceText("{{stationNetz2Remarks}}",netzAntena2Remarks);
+  body.replaceText("{{stationNetz3}}",netzAntena3);
+  body.replaceText("{{stationNetz3Remarks}}",netzAntena3Remarks);
+
+  // ista station
+  body.replaceText("{{controlIsta1}}", istaStation1);
+  body.replaceText("{{controlIsta1Remarks}}", istaStation1Remarks);
+  body.replaceText("{{controlIsta2}}", istaStation2);
+  body.replaceText("{{controlIsta2Remarks}}", istaStation2Remarks);
+  body.replaceText("{{controlIsta3}}", istaStation3);
+  body.replaceText("{{controlIsta3Remarks}}", istaStation3Remarks);
+
+  // ista antena
+  body.replaceText("{{stationIsta1}}", istaAntena1);
+  body.replaceText("{{stationIsta1Remarks}}",istaAntena1Remarks);
+  body.replaceText("{{stationIsta2}}", istaAntena2);
+  body.replaceText("{{stationIsta2Remarks}}",istaAntena2Remarks);
+  body.replaceText("{{stationIsta3}}", istaAntena3);
+  body.replaceText("{{stationIsta3Remarks}}",istaAntena3Remarks);
+
+  body.replaceText("{{netzParchute}}", netzParachute);
+  body.replaceText("{{istaParchute}}", istaParachute);
+  body.replaceText("{{netzBattary}}", netzbatteries);
+  body.replaceText("{{istaBattary}}", istabatteries);
+  body.replaceText("{{missing}}", missings);
+  body.replaceText("{{toYavne}}", wentToYavne);
+  body.replaceText("{{nextShift}}", nextShift);
+  body.replaceText("{{remarksCastumer}}", remarksCustomer);
+  body.replaceText("{{remarksPod}}", podRemark);
+  body.replaceText("{{generalRemarks}}", generalRemarks);
+
+
+  // save and close
+  doc.saveAndClose();
+
+
+  // from GPT 
+  // Get the file as a Blob
+  var file = DriveApp.getFileById(templateCopy.getId());
+  var blob = file.getBlob();
+  
+  // Send an email with the document attached
+  GmailApp.sendEmail(mailAddress, 'דוח טכני ממשמרת ' + date, 'הדוח הטכני מצורף',{attachments: [blob],name: 'Automatic Emailer Script'});
+}
